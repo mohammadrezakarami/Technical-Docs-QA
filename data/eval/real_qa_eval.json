@@ -1,0 +1,293 @@
+[
+  {
+    "id": "fastapi_headers_prefix",
+    "question": "What prefix should custom proprietary headers use in FastAPI?",
+    "answers": ["X-", "the X- prefix"],
+    "gold_chunk_ids": ["fastapi_2213195774760306018_chunk_002"],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/response-headers"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_expose_headers",
+    "question": "Which parameter should you use in CORS configuration so browsers can see custom headers in FastAPI?",
+    "answers": ["expose_headers"],
+    "gold_chunk_ids": ["fastapi_2213195774760306018_chunk_002"],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/response-headers"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_streaming_response",
+    "question": "Which response class should you declare to stream pure strings or binary data in FastAPI?",
+    "answers": ["StreamingResponse"],
+    "gold_chunk_ids": ["fastapi_3851805601221926377_chunk_000", "fastapi_3851805601221926377_chunk_001"],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/stream-data"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_stream_yield",
+    "question": "What keyword can you use to send each chunk of data in turn with StreamingResponse in FastAPI?",
+    "answers": ["yield"],
+    "gold_chunk_ids": ["fastapi_3851805601221926377_chunk_000", "fastapi_3851805601221926377_chunk_002"],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/stream-data"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_install_command",
+    "question": "What command installs FastAPI with the standard optional dependencies?",
+    "answers": ["pip install \"fastapi[standard]\"", "pip install fastapi[standard]"],
+    "gold_chunk_ids": ["fastapi_8055320653695693258_chunk_002"],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/tutorial"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_additional_status_response",
+    "question": "Which response class can you return directly to set additional status codes in FastAPI?",
+    "answers": ["JSONResponse"],
+    "gold_chunk_ids": ["fastapi_1072560133301515001_chunk_000", "fastapi_1072560133301515001_chunk_001"],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/additional-status-codes"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_created_status_code",
+    "question": "What status code does the FastAPI upsert example return when it creates a new item?",
+    "answers": ["201", "201 Created", "HTTP_201_CREATED"],
+    "gold_chunk_ids": ["fastapi_1072560133301515001_chunk_001"],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/additional-status-codes"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_content_disposition_param",
+    "question": "In FastAPI FileResponse, which parameter is included in the response Content-Disposition header?",
+    "answers": ["filename"],
+    "gold_chunk_ids": ["fastapi_5844156875820658022_chunk_011"],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/custom-response"],
+    "answerable": true
+  },
+  {
+    "id": "pandas_read_csv",
+    "question": "What function reads a CSV file in pandas?",
+    "answers": ["read_csv", "pd.read_csv"],
+    "gold_chunk_ids": ["pandas_5476766749002546500_chunk_034"],
+    "gold_source_urls": ["https://pandas.pydata.org/docs/user_guide/10min.html"],
+    "answerable": true
+  },
+  {
+    "id": "pandas_to_csv",
+    "question": "What method writes a DataFrame to a CSV file in pandas?",
+    "answers": ["to_csv", "DataFrame.to_csv"],
+    "gold_chunk_ids": ["pandas_5476766749002546500_chunk_034", "pandas_7481901843197792163_chunk_000"],
+    "gold_source_urls": [
+      "https://pandas.pydata.org/docs/user_guide/10min.html",
+      "https://pandas.pydata.org/docs/user_guide/io.html"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "python_enumerate",
+    "question": "Which Python function is convenient when you need both the index and the value while looping?",
+    "answers": ["enumerate", "enumerate()"],
+    "gold_chunk_ids": ["python_3636082439110151936_chunk_004", "python_5019932811419773896_chunk_024"],
+    "gold_source_urls": [
+      "https://docs.python.org/3/tutorial/controlflow.html",
+      "https://docs.python.org/3/tutorial/datastructures.html"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "python_zip",
+    "question": "Which Python function pairs entries from two sequences for looping at the same time?",
+    "answers": ["zip", "zip()"],
+    "gold_chunk_ids": ["python_5019932811419773896_chunk_024", "python_5019932811419773896_chunk_012"],
+    "gold_source_urls": ["https://docs.python.org/3/tutorial/datastructures.html"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_response_parameter_headers",
+    "question": "Which parameter type can you declare in a FastAPI path operation to set response headers?",
+    "answers": ["Response", "fastapi.Response"],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/response-headers"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_default_json_responses",
+    "question": "By default, what kind of responses does FastAPI return?",
+    "answers": ["JSON responses", "json responses"],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/custom-response"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_underlying_response_library",
+    "question": "Most of the available FastAPI responses come directly from which library?",
+    "answers": ["Starlette"],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/response-headers", "https://fastapi.tiangolo.com/advanced/additional-status-codes"],
+    "answerable": true
+  },
+  {
+    "id": "pandas_groupby_method",
+    "question": "Which pandas method returns a GroupBy object for grouping rows?",
+    "answers": ["groupby", "groupby()"],
+    "gold_chunk_ids": [],
+    "gold_source_urls": [
+      "https://pandas.pydata.org/docs/user_guide/10min.html",
+      "https://pandas.pydata.org/docs/user_guide/groupby.html"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "pandas_loc_iloc_recommendation",
+    "question": "Which pandas access methods are recommended for production code when selecting and setting data?",
+    "answers": ["DataFrame.at(), DataFrame.iat(), DataFrame.loc() and DataFrame.iloc()", "loc and iloc", "DataFrame.loc() and DataFrame.iloc()"],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://pandas.pydata.org/docs/user_guide/10min.html"],
+    "answerable": true,
+    "question_type": "explanatory",
+    "answer_style": "explanatory",
+    "required_terms": ["loc", "iloc", "at", "iat", "production code"]
+  },
+  {
+    "id": "pandas_read_parquet",
+    "question": "What function reads a Parquet file in pandas?",
+    "answers": ["read_parquet", "pd.read_parquet"],
+    "gold_chunk_ids": [],
+    "gold_source_urls": [
+      "https://pandas.pydata.org/docs/user_guide/10min.html",
+      "https://pandas.pydata.org/docs/user_guide/io.html"
+    ],
+    "answerable": true
+  },
+  {
+    "id": "python_items_method",
+    "question": "Which Python dictionary method returns the key and value at the same time while looping?",
+    "answers": ["items", "items()"],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://docs.python.org/3/tutorial/datastructures.html"],
+    "answerable": true
+  },
+  {
+    "id": "python_reversed_function",
+    "question": "Which Python function can you call to loop over a sequence in reverse order?",
+    "answers": ["reversed", "reversed()"],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://docs.python.org/3/tutorial/datastructures.html"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_stream_pure_strings",
+    "question": "Which FastAPI response class is used to stream pure strings or binary data?",
+    "answers": ["StreamingResponse"],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/stream-data"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_jsonresponse_default_wrapper",
+    "question": "Which FastAPI response class wraps returned content by default when returning JSON?",
+    "answers": ["JSONResponse"],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/additional-status-codes", "https://fastapi.tiangolo.com/advanced/custom-response"],
+    "answerable": true
+  },
+  {
+    "id": "fastapi_response_headers_explained",
+    "question": "How do you set custom response headers in FastAPI, and why does using a Response parameter work?",
+    "answers": [
+      "You can declare a Response parameter in the path operation and set headers on that temporary response object before returning the final content.",
+      "Declare a Response parameter and set headers on it; FastAPI extracts the headers from that temporary response and still applies response_model filtering to the returned content."
+    ],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/response-headers"],
+    "answerable": true,
+    "question_type": "explanatory",
+    "answer_style": "explanatory",
+    "required_terms": ["Response", "headers", "temporary response object", "return"]
+  },
+  {
+    "id": "fastapi_streamingresponse_explained",
+    "question": "How does StreamingResponse send data in FastAPI, and when would you use yield with it?",
+    "answers": [
+      "StreamingResponse streams data incrementally and you can use yield to send each piece of data in turn instead of building the whole body first.",
+      "It returns streamed content chunk by chunk, and yield is used when generating each piece lazily."
+    ],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://fastapi.tiangolo.com/advanced/stream-data"],
+    "answerable": true,
+    "question_type": "explanatory",
+    "answer_style": "explanatory",
+    "required_terms": ["StreamingResponse", "yield", "chunk", "data"]
+  },
+  {
+    "id": "pandas_loc_iloc_difference",
+    "question": "What is the difference between loc and iloc in pandas, and when is each used?",
+    "answers": [
+      "loc is label-based indexing and iloc is integer-position based indexing; you use loc when selecting by labels and iloc when selecting by positions.",
+      "loc works with labels, while iloc works with integer positions."
+    ],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://pandas.pydata.org/docs/user_guide/indexing.html"],
+    "answerable": true,
+    "question_type": "explanatory",
+    "answer_style": "explanatory",
+    "required_terms": ["loc", "iloc", "labels", "integer positions"]
+  },
+  {
+    "id": "pandas_csv_vs_fixed_width",
+    "question": "What is the difference between read_csv and read_fwf in pandas, and when is read_fwf more appropriate?",
+    "answers": [
+      "read_csv reads delimiter-separated text such as CSV files, while read_fwf reads fixed-width formatted files where fields are aligned by character columns.",
+      "Use read_fwf for fixed-width files instead of delimiter-separated CSV-like input."
+    ],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://pandas.pydata.org/docs/user_guide/io.html"],
+    "answerable": true,
+    "question_type": "explanatory",
+    "answer_style": "explanatory",
+    "required_terms": ["read_csv", "read_fwf", "fixed-width", "delimiter"]
+  },
+  {
+    "id": "python_enumerate_why",
+    "question": "Why is enumerate useful in Python loops compared with manually tracking an index?",
+    "answers": [
+      "enumerate is useful because it returns both the index and the value while iterating, so you do not have to manage a separate counter manually.",
+      "It gives you the loop index together with each item."
+    ],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://docs.python.org/3/tutorial/datastructures.html", "https://docs.python.org/3/tutorial/controlflow.html"],
+    "answerable": true,
+    "question_type": "explanatory",
+    "answer_style": "explanatory",
+    "required_terms": ["enumerate", "index", "value", "counter"]
+  },
+  {
+    "id": "python_zip_explained",
+    "question": "How does zip help when iterating over two sequences in Python at the same time?",
+    "answers": [
+      "zip pairs items from multiple iterables together so you can loop over corresponding elements at the same time.",
+      "It combines entries from the sequences into pairs for synchronized iteration."
+    ],
+    "gold_chunk_ids": [],
+    "gold_source_urls": ["https://docs.python.org/3/tutorial/datastructures.html"],
+    "answerable": true,
+    "question_type": "explanatory",
+    "answer_style": "explanatory",
+    "required_terms": ["zip", "iterables", "pairs", "same time"]
+  },
+  {
+    "id": "negative_capital_france",
+    "question": "What is the capital of France?",
+    "answers": [],
+    "gold_chunk_ids": [],
+    "gold_source_urls": [],
+    "answerable": false
+  },
+  {
+    "id": "negative_world_cup",
+    "question": "Who won the 2022 FIFA World Cup?",
+    "answers": [],
+    "gold_chunk_ids": [],
+    "gold_source_urls": [],
+    "answerable": false
+  }
+]

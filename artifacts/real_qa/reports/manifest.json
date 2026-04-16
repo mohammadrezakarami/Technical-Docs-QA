@@ -1,0 +1,39 @@
+{
+  "build_config": {
+    "project_root": "/Users/mohammadrezakarami/Documents/New project/qa_system",
+    "max_pages_per_source": 60,
+    "max_urls_visited_per_source": 280,
+    "max_crawl_depth": 2,
+    "request_timeout": 20,
+    "sleep_seconds": 0.15,
+    "min_clean_chars": 140,
+    "min_word_count": 40,
+    "chunk_size_words": 180,
+    "chunk_overlap_words": 35,
+    "chunk_min_sentences": 4,
+    "chunk_max_sentences": 8,
+    "chunk_sentence_overlap": 2,
+    "top_k_bm25": 20,
+    "top_k_dense": 20,
+    "top_k_rerank": 7,
+    "max_context_chars": 2200,
+    "dense_model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "reranker_model_name": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "reader_model_name": "deepset/roberta-base-squad2"
+  },
+  "crawl_report": {
+    "mode": "cached_documents"
+  },
+  "document_count": 182,
+  "chunk_count": 55486,
+  "artifacts": {
+    "documents": "/Users/mohammadrezakarami/Documents/New project/qa_system/artifacts/real_qa/processed/documents.json",
+    "chunks": "/Users/mohammadrezakarami/Documents/New project/qa_system/artifacts/real_qa/processed/processed_chunks.parquet",
+    "bm25_index": "/Users/mohammadrezakarami/Documents/New project/qa_system/artifacts/real_qa/index/bm25_retrieval_index.pkl",
+    "dense_index": "/Users/mohammadrezakarami/Documents/New project/qa_system/artifacts/real_qa/index/dense_faiss_index.faiss",
+    "dense_chunk_ids": "/Users/mohammadrezakarami/Documents/New project/qa_system/artifacts/real_qa/index/dense_chunk_ids.json",
+    "dense_model": "/Users/mohammadrezakarami/Documents/New project/qa_system/artifacts/real_qa/models/dense_retriever",
+    "reranker_model": "/Users/mohammadrezakarami/Documents/New project/qa_system/artifacts/real_qa/models/reranker",
+    "reader_model": "/Users/mohammadrezakarami/Documents/New project/qa_system/artifacts/real_qa/models/reader"
+  }
+}

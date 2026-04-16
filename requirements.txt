@@ -1,0 +1,12 @@
+requests
+pandas
+numpy
+pyarrow
+sentence-transformers
+transformers
+datasets
+accelerate
+faiss-cpu
+torch
+beautifulsoup4
+pytest
