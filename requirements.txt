@@ -1,4 +1,6 @@
 requests
+fastapi
+uvicorn
 pandas
 numpy
 pyarrow

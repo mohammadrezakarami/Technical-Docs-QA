@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real QA System</title>
+    <style>
+      :root {
+        --bg: #f3f0e8;
+        --panel: rgba(255, 252, 245, 0.92);
+        --panel-strong: #fffdf8;
+        --ink: #1d1b18;
+        --muted: #5d5a54;
+        --line: rgba(29, 27, 24, 0.12);
+        --accent: #0c6c5a;
+        --accent-strong: #084d40;
+        --chip: #ece5d8;
+        --danger: #8a2d2d;
+        --shadow: 0 18px 50px rgba(57, 45, 27, 0.14);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Georgia, "Times New Roman", serif;
+        background:
+          radial-gradient(circle at top left, rgba(12, 108, 90, 0.14), transparent 26%),
+          radial-gradient(circle at bottom right, rgba(153, 105, 44, 0.12), transparent 22%),
+          linear-gradient(180deg, #f5f1e8 0%, #efe8dc 100%);
+        color: var(--ink);
+        min-height: 100vh;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 32px));
+        margin: 28px auto;
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        gap: 18px;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(12px);
+      }
+
+      .hero { padding: 30px 30px 18px; }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        background: var(--chip);
+        color: var(--accent-strong);
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 18px 0 10px;
+        font-size: clamp(32px, 5vw, 54px);
+        line-height: 0.98;
+        max-width: 10ch;
+      }
+
+      .lede {
+        max-width: 60ch;
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.65;
+      }
+
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+
+      .meta-chip {
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: var(--panel-strong);
+        border: 1px solid var(--line);
+        font-size: 14px;
+      }
+
+      .composer { padding: 0 30px 30px; }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      textarea,
+      input,
+      select {
+        width: 100%;
+        border: 1px solid rgba(29, 27, 24, 0.15);
+        border-radius: 16px;
+        padding: 14px 15px;
+        font: inherit;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.85);
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 138px;
+        line-height: 1.55;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: 1fr 160px 150px;
+        gap: 12px;
+        margin-top: 14px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      button {
+        border: none;
+        border-radius: 16px;
+        padding: 14px 18px;
+        font: inherit;
+        cursor: pointer;
+        transition: transform 150ms ease, background 150ms ease;
+      }
+
+      button:hover { transform: translateY(-1px); }
+
+      .primary {
+        background: var(--accent);
+        color: #fff;
+        min-width: 170px;
+      }
+
+      .secondary {
+        background: transparent;
+        border: 1px solid var(--line);
+        color: var(--ink);
+      }
+
+      .side {
+        padding: 24px;
+        display: grid;
+        gap: 16px;
+        align-content: start;
+      }
+
+      .card {
+        background: var(--panel-strong);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .card h2,
+      .card h3 {
+        margin: 0 0 12px;
+        font-size: 18px;
+      }
+
+      .status-line {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #b08938;
+      }
+
+      .dot.live { background: var(--accent); }
+      .dot.down { background: var(--danger); }
+
+      .result-wrap { padding: 0 30px 30px; }
+
+      .result {
+        padding: 22px;
+        background: var(--panel-strong);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+      }
+
+      .hidden { display: none; }
+
+      .answer {
+        font-size: 17px;
+        line-height: 1.72;
+        margin: 10px 0 0;
+      }
+
+      .message {
+        margin-top: 14px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: rgba(138, 45, 45, 0.08);
+        border: 1px solid rgba(138, 45, 45, 0.15);
+        color: var(--danger);
+      }
+
+      .kv {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .kv .card { padding: 14px; }
+
+      .tiny {
+        margin: 0;
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+      }
+
+      .value {
+        margin: 6px 0 0;
+        font-size: 20px;
+      }
+
+      .list {
+        display: grid;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .item {
+        padding: 16px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid var(--line);
+      }
+
+      .item p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.55;
+        font-size: 14px;
+      }
+
+      .mono {
+        font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      a { color: var(--accent-strong); }
+
+      @media (max-width: 940px) {
+        .shell { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 720px) {
+        .shell {
+          width: min(100% - 18px, 100%);
+          margin: 12px auto 18px;
+          gap: 12px;
+        }
+        .hero,
+        .composer,
+        .result-wrap,
+        .side {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+        .controls,
+        .kv {
+          grid-template-columns: 1fr;
+        }
+        .actions { flex-direction: column; }
+        button { width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="panel">
+        <div class="hero">
+          <div class="eyebrow">Technical Documentation QA</div>
+          <h1>Ask the corpus, not your memory.</h1>
+          <p class="lede">
+            A browser interface for the retrieval, reranking, reading, and explanatory answer pipeline.
+            Ask a technical question and inspect both the final answer and the grounded evidence behind it.
+          </p>
+          <div class="meta-row">
+            <div class="meta-chip">Hybrid retrieval</div>
+            <div class="meta-chip">Cross-encoder reranking</div>
+            <div class="meta-chip">Extractive + explanatory answers</div>
+          </div>
+        </div>
+
+        <div class="composer">
+          <label for="question">Question</label>
+          <textarea id="question" placeholder="Example: How do you set custom response headers in FastAPI, and why does using a Response parameter work?"></textarea>
+
+          <div class="controls">
+            <div>
+              <label for="style">Answer style</label>
+              <select id="style">
+                <option value="auto">Auto</option>
+                <option value="extractive">Extractive</option>
+                <option value="explanatory">Explanatory</option>
+              </select>
+            </div>
+            <div>
+              <label for="threshold">Threshold</label>
+              <input id="threshold" type="number" min="0" max="1" step="0.01" value="0.01" />
+            </div>
+            <div>
+              <label for="preset">Quick example</label>
+              <select id="preset">
+                <option value="">Choose one</option>
+                <option value="Which pandas method returns a GroupBy object for grouping rows?">Pandas grouping</option>
+                <option value="How do you set custom response headers in FastAPI, and why does using a Response parameter work?">FastAPI explanatory</option>
+                <option value="Which Python function pairs entries from two sequences for looping at the same time?">Python basics</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="askButton" class="primary">Run question</button>
+            <button id="clearButton" class="secondary" type="button">Clear</button>
+          </div>
+
+          <div id="errorBox" class="message hidden"></div>
+        </div>
+
+        <div class="result-wrap">
+          <section id="result" class="result hidden">
+            <p class="tiny">Final answer</p>
+            <div id="answer" class="answer"></div>
+
+            <div class="kv">
+              <div class="card">
+                <p class="tiny">Answer type</p>
+                <p id="answerType" class="value">-</p>
+              </div>
+              <div class="card">
+                <p class="tiny">Question style</p>
+                <p id="questionStyle" class="value">-</p>
+              </div>
+              <div class="card">
+                <p class="tiny">Confidence</p>
+                <p id="confidence" class="value">-</p>
+              </div>
+            </div>
+
+            <div class="list">
+              <div>
+                <h3>Support sentences</h3>
+                <div id="supportSentences"></div>
+              </div>
+              <div>
+                <h3>Evidence chunks</h3>
+                <div id="evidence"></div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <aside class="panel side">
+        <div class="card">
+          <h2>Runtime</h2>
+          <div class="status-line">
+            <span id="healthDot" class="dot"></span>
+            <span id="healthText">Checking API...</span>
+          </div>
+          <p id="artifactText" class="mono" style="margin-top: 12px;">Loading artifact status...</p>
+        </div>
+
+        <div class="card">
+          <h3>What this UI shows</h3>
+          <p>
+            This interface keeps the terminal-first architecture intact and adds a presentation layer on top of the same QA pipeline.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Recommended prompts</h3>
+          <p>Ask focused technical questions, or use explanatory style for “how”, “why”, and “difference between” queries.</p>
+        </div>
+      </aside>
+    </main>
+
+    <script>
+      const questionEl = document.getElementById("question");
+      const styleEl = document.getElementById("style");
+      const thresholdEl = document.getElementById("threshold");
+      const presetEl = document.getElementById("preset");
+      const askButton = document.getElementById("askButton");
+      const clearButton = document.getElementById("clearButton");
+      const errorBox = document.getElementById("errorBox");
+      const resultBox = document.getElementById("result");
+      const answerEl = document.getElementById("answer");
+      const answerTypeEl = document.getElementById("answerType");
+      const questionStyleEl = document.getElementById("questionStyle");
+      const confidenceEl = document.getElementById("confidence");
+      const supportEl = document.getElementById("supportSentences");
+      const evidenceEl = document.getElementById("evidence");
+      const healthDot = document.getElementById("healthDot");
+      const healthText = document.getElementById("healthText");
+      const artifactText = document.getElementById("artifactText");
+
+      function escapeHtml(text) {
+        return text
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function setError(message) {
+        if (!message) {
+          errorBox.textContent = "";
+          errorBox.classList.add("hidden");
+          return;
+        }
+        errorBox.textContent = message;
+        errorBox.classList.remove("hidden");
+      }
+
+      function renderSupport(rows) {
+        if (!rows.length) {
+          supportEl.innerHTML = '<div class="item"><strong>No support sentences</strong><p>The pipeline did not collect grounded support sentences for this question.</p></div>';
+          return;
+        }
+        supportEl.innerHTML = rows.map((row) => `
+          <div class="item">
+            <strong>${escapeHtml(row.source_name)} · ${escapeHtml(row.section_title || row.title)}</strong>
+            <p>${escapeHtml(row.sentence)}</p>
+          </div>
+        `).join("");
+      }
+
+      function renderEvidence(rows) {
+        if (!rows.length) {
+          evidenceEl.innerHTML = '<div class="item"><strong>No evidence chunks</strong><p>No chunk-level evidence was returned.</p></div>';
+          return;
+        }
+        evidenceEl.innerHTML = rows.slice(0, 5).map((row) => `
+          <div class="item">
+            <strong>${escapeHtml(row.source_name)} · ${escapeHtml(row.title)}</strong>
+            <p>${escapeHtml(row.answer_span || row.context_preview || "")}</p>
+            <p class="mono">retrieval=${row.retrieval_score} · reranker=${row.reranker_score} · reader=${row.reader_score}</p>
+            <p><a href="${escapeHtml(row.source_url)}" target="_blank" rel="noreferrer">Open source page</a></p>
+          </div>
+        `).join("");
+      }
+
+      async function loadStatus() {
+        try {
+          const [healthRes, statusRes] = await Promise.all([fetch("/api/health"), fetch("/api/status")]);
+          if (!healthRes.ok || !statusRes.ok) {
+            throw new Error("API status endpoints are not available.");
+          }
+          const health = await healthRes.json();
+          const status = await statusRes.json();
+          healthDot.className = `dot ${health.status === "ok" ? "live" : "down"}`;
+          healthText.textContent = health.status === "ok" ? "API is live" : "API is unavailable";
+          const readyCount = Object.values(status.required_artifacts || {}).filter((item) => item.exists).length;
+          const totalCount = Object.keys(status.required_artifacts || {}).length;
+          artifactText.textContent = `${readyCount}/${totalCount} required artifacts present`;
+        } catch (error) {
+          healthDot.className = "dot down";
+          healthText.textContent = "API check failed";
+          artifactText.textContent = error.message;
+        }
+      }
+
+      async function askQuestion() {
+        const question = questionEl.value.trim();
+        if (!question) {
+          setError("Please enter a question first.");
+          return;
+        }
+        setError("");
+        askButton.disabled = true;
+        askButton.textContent = "Running...";
+        try {
+          const response = await fetch("/api/ask", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              question,
+              style: styleEl.value,
+              threshold: Number(thresholdEl.value || 0.01),
+            }),
+          });
+          const payload = await response.json();
+          if (!response.ok) {
+            throw new Error(payload.detail || "Request failed.");
+          }
+          resultBox.classList.remove("hidden");
+          answerEl.textContent = payload.final_answer || "No answer was returned.";
+          answerTypeEl.textContent = payload.answer_type;
+          questionStyleEl.textContent = payload.question_style;
+          confidenceEl.textContent = Number(payload.confidence || 0).toFixed(4);
+          renderSupport(payload.support_sentences || []);
+          renderEvidence(payload.evidence || []);
+        } catch (error) {
+          setError(error.message);
+        } finally {
+          askButton.disabled = false;
+          askButton.textContent = "Run question";
+        }
+      }
+
+      askButton.addEventListener("click", askQuestion);
+      clearButton.addEventListener("click", () => {
+        questionEl.value = "";
+        presetEl.value = "";
+        resultBox.classList.add("hidden");
+        setError("");
+      });
+      presetEl.addEventListener("change", () => {
+        if (presetEl.value) {
+          questionEl.value = presetEl.value;
+        }
+      });
+      questionEl.addEventListener("keydown", (event) => {
+        if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
+          askQuestion();
+        }
+      });
+
+      loadStatus();
+    </script>
+  </body>
+</html>

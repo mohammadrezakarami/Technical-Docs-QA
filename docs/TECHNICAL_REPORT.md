@@ -4,6 +4,8 @@
 
 Build an end-to-end question answering system over official technical documentation with a reproducible terminal-first workflow.
 
+The latest delivery also includes a thin API and browser interface layer on top of the same QA core, without changing the underlying retrieval and answer pipeline.
+
 ## Final Architecture
 
 - corpus crawler over official documentation sources
@@ -17,6 +19,7 @@ Build an end-to-end question answering system over official technical documentat
 - grounded explanatory answer synthesis
 - evaluation with answer, explanatory coverage, and retrieval metrics
 - offline artifact reuse with local model snapshots
+- FastAPI delivery layer and browser interface for interactive use
 
 ## Data Sources
 

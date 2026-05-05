@@ -1,0 +1,10 @@
+.git
+.github
+.venv
+.pytest_cache
+__pycache__
+*.pyc
+.DS_Store
+checkpoints
+artifacts/real_qa/raw
+artifacts/real_qa/models

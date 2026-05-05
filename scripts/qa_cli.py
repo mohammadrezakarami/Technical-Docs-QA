@@ -44,6 +44,7 @@ def main() -> None:
     subparsers.add_parser("build", help="Build the real QA artifacts and local model snapshots.")
     subparsers.add_parser("generate-train", help="Generate domain-specific training pairs for retriever tuning.")
     subparsers.add_parser("train", help="Fine-tune the dense retriever on project-specific training data.")
+    subparsers.add_parser("serve", help="Run the FastAPI server and browser interface.")
 
     ask_parser = subparsers.add_parser("ask", help="Ask a question to the real QA system.")
     ask_parser.add_argument("question", help="Question to ask.")
@@ -70,6 +71,8 @@ def main() -> None:
         raise SystemExit(run_python_script("generate_domain_training_data.py"))
     if args.command == "train":
         raise SystemExit(run_python_script("fine_tune_dense_retriever.py"))
+    if args.command == "serve":
+        raise SystemExit(run_python_script("run_real_qa_api.py"))
     if args.command == "ask":
         raise SystemExit(
             run_python_script(

@@ -1,6 +1,6 @@
 PYTHON ?= .venv/bin/python
 
-.PHONY: install build generate-train train ask eval eval-sweep analyze status test clean-reports
+.PHONY: install build generate-train train serve ask eval eval-sweep analyze status test clean-reports
 
 install:
 	$(PYTHON) -m pip install -r requirements.txt
@@ -13,6 +13,9 @@ generate-train:
 
 train:
 	$(PYTHON) scripts/qa_cli.py train
+
+serve:
+	$(PYTHON) scripts/qa_cli.py serve
 
 ask:
 	$(PYTHON) scripts/qa_cli.py ask "$(Q)"

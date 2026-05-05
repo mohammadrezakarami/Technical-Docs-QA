@@ -5,6 +5,4 @@ __pycache__/
 *.pyc
 
 artifacts/real_qa/raw/
-artifacts/real_qa/processed/
-artifacts/real_qa/index/
 artifacts/real_qa/models/

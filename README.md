@@ -1,6 +1,6 @@
 # Real QA System
 
-Terminal-first question answering system over official technical documentation with domain-specific retriever tuning, benchmark evaluation, and delivery documents.
+Terminal-first question answering system over official technical documentation with domain-specific retriever tuning, benchmark evaluation, delivery documents, and a lightweight web layer.
 
 ## Scope
 
@@ -10,8 +10,9 @@ Current corpus coverage:
 - Pandas official docs
 - Python official docs
 - Pydantic docs
+- Scikit-learn docs
 
-The repository is intentionally focused on one serious QA path and no longer carries demo, baseline, API, or frontend layers.
+The repository is intentionally focused on one serious QA path. The terminal workflow remains the main engineering path, and a thin FastAPI plus browser interface now sits on top of the same QA pipeline.
 
 ## Architecture
 
@@ -32,10 +33,13 @@ The repository is intentionally focused on one serious QA path and no longer car
 
 - `src/real_qa/`: core build and inference logic
 - `scripts/qa_cli.py`: unified CLI
+- `scripts/run_real_qa_api.py`: local API server entrypoint
 - `scripts/generate_domain_training_data.py`: training-pair generation
 - `scripts/fine_tune_dense_retriever.py`: dense retriever tuning
 - `scripts/evaluate_real_qa.py`: benchmark evaluation
 - `scripts/analyze_real_qa_errors.py`: error analysis
+- `src/real_qa/web.py`: FastAPI app
+- `src/real_qa/ui/index.html`: browser interface
 - `data/eval/real_qa_eval.json`: benchmark set
 - `data/training/dense_retriever_pairs.jsonl`: generated training pairs
 - `docs/TECHNICAL_REPORT.md`: technical write-up
@@ -75,6 +79,14 @@ Ask a question:
 .venv/bin/python scripts/qa_cli.py ask "Which parameter type can you declare in a FastAPI path operation to set response headers?"
 ```
 
+Run the API and browser interface:
+
+```bash
+.venv/bin/python scripts/qa_cli.py serve
+```
+
+Then open `http://127.0.0.1:8000`.
+
 Ask for a grounded explanatory answer:
 
 ```bash
@@ -106,6 +118,7 @@ Check artifact status:
 make build
 make generate-train
 make train
+make serve
 make ask Q="Which Python function pairs entries from two sequences for looping at the same time?"
 make eval
 make eval-sweep
@@ -127,6 +140,53 @@ Current benchmark snapshot after explanatory benchmark expansion and grounded sy
 - Retrieval MRR: `0.8452`
 - No-answer accuracy: `1.0000`
 - Example count: `30`
+
+## API
+
+Available endpoints:
+
+- `GET /`: browser interface
+- `GET /api/health`: health check
+- `GET /api/status`: artifact readiness summary
+- `POST /api/ask`: ask a question
+
+Example request:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/ask \
+  -H "Content-Type: application/json" \
+  -d '{
+    "question": "How do you set custom response headers in FastAPI, and why does using a Response parameter work?",
+    "style": "explanatory",
+    "threshold": 0.01
+  }'
+```
+
+## Docker And Hugging Face Spaces
+
+This repository now includes:
+
+- `Dockerfile`
+- `.dockerignore`
+- `scripts/run_real_qa_api.py`
+- `docs/HF_SPACE_DEPLOYMENT.md`
+
+Recommended deployment strategy:
+
+- keep `artifacts/real_qa/index/` and `artifacts/real_qa/processed/` in the deployed repo
+- keep `artifacts/real_qa/models/` out of the repo
+- let the app download public model weights when needed
+
+Local Docker run:
+
+```bash
+docker build -t real-qa-system .
+docker run -p 7860:7860 real-qa-system
+```
+
+For Hugging Face Spaces, use a Docker Space and follow:
+
+- `docs/HF_SPACE_DEPLOYMENT.md`
 
 ## Reports
 
